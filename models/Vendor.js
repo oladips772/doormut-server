@@ -24,17 +24,23 @@ const vendorSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    role: {
-      type: String,
-      required: true,
-    },
-    isMasterVendor: {
-      type: Boolean,
-      default: false,
-    },
     profileImage: {
       type: String,
       required: false,
+    },
+    accountInfo: {
+      bankName: {
+        type: String,
+        required: false,
+      },
+      bankCode: {
+        type: String,
+        required: false,
+      },
+      bankAccount: {
+        type: String,
+        required: false,
+      },
     },
   },
   {
