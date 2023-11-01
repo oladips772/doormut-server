@@ -3,7 +3,40 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const adminSchema = mongoose.Schema(
-  {},
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isSuspended: {
+      type: Boolean,
+      default: false,
+    },
+    role: {
+      type: String,
+      required: true,
+    },
+    isMasterAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    profileImage: {
+      type: String,
+      required: false,
+    },
+  },
   {
     timestamps: true,
   }
@@ -25,4 +58,3 @@ adminSchema.pre("save", async function (next) {
 
 const Admin = mongoose.model("Admin", adminSchema);
 module.exports = Admin;
-
