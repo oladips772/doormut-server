@@ -32,6 +32,28 @@ const riderSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    ninPicture: {
+      type: String,
+      required: false,
+    },
+    isApproved: {
+      type: Boolean,
+      default: false,
+    },
+    accountInfo: {
+      bankName: {
+        type: String,
+        required: false,
+      },
+      bankCode: {
+        type: String,
+        required: false,
+      },
+      bankAccount: {
+        type: String,
+        required: false,
+      },
+    },
   },
   {
     timestamps: true,
@@ -43,7 +65,7 @@ riderSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-// create rider
+// register rider
 riderSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
