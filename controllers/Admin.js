@@ -19,7 +19,6 @@ const createAdmin = asyncHandler(async (req, res) => {
   res.status(200).send("admin created successfully");
 });
 
-
-// ? 
+// ?
 
 module.exports = { getAllAdmins, createAdmin };
