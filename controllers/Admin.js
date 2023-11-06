@@ -19,6 +19,26 @@ const createAdmin = asyncHandler(async (req, res) => {
   res.status(200).send("admin created successfully");
 });
 
-// ?
+// ? suspend admin
+const suspendAdmin = asyncHandler(async (req, res) => {
+  const admin = await Admin.findById(req.params.id);
+  if (!admin) {
+    return res.status(400).json({ error: "admin not found" });
+  }
+  admin.isSuspended = true;
+  await admin.save();
+  res.status(200).send("suspended admin successfully");
+});
 
-module.exports = { getAllAdmins, createAdmin };
+// ? unsuspend admin
+const unSuspendAdmin = asyncHandler(async (req, res) => {
+  const admin = await Admin.findById(req.params.id);
+  if (!admin) {
+    return res.status(400).json({ error: "admin not found" });
+  }
+  admin.isSuspended = false;
+  await admin.save();
+  res.status(200).send("un suspended admin successfully");
+});
+
+module.exports = { getAllAdmins, createAdmin, suspendAdmin, unSuspendAdmin };
